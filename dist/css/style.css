@@ -1,0 +1,126 @@
+html, body{
+    font-family: 'Noto Sans TC', sansserif;
+  }
+  .guess-container{
+    width: 75%;
+    margin: 0 auto;
+  }
+  
+  .word-wrapper{
+    text-align: center;
+  }
+  .word-wrapper > div{
+    line-height: 1em;
+    vertical-align: top;
+    display: inline-block;
+    padding: 20px;
+    margin-right: 2px;
+    border: 3px solid black;
+    font-size: 3.5rem;
+    width: 60px;
+    height: 65px;
+    background-color: beige;
+  }
+  
+  .character-selector{
+    width: 60%;
+    margin: 0 auto;
+    padding-top: 30px;
+    text-align: center;
+  }
+  .character-selector > div{
+    display: inline-block;
+    background-color: lightblue;
+    width: 85px;
+    margin: 2px;
+    text-align: center;
+    line-height: 75px;
+    font-size: 30px;
+    cursor: pointer;
+    border-radius: 8px;
+    
+  }
+  
+  .character-selector > div:hover{
+    transform: scale(1.1);
+    box-shadow: 1px 1px 5px black;
+  }
+  
+  .results{
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    padding: 20px;
+    border: 1px solid black;
+    background-color: rgb(255,209,65);
+  }
+  
+  .btn{
+    display: block;
+    text-align: center;
+    border: 1px solid orange;
+    border-radius: 10px;
+    text-decoration: none;
+    padding: 5px;
+    margin-top: 25px;
+    font-size: 2rem;
+    background-color: orange;
+    
+  }
+
+  .btn-disable{
+    background-color: lightgray;
+    color: gray;
+    border-color: gray;
+    pointer-events: none;
+  }
+
+  .modal{
+    display: none;
+    background: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+  }
+  .results-pane{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    margin: 0 auto;
+    max-width: 20%;
+    text-align: center;
+    background: rgba(1,1,1, 0.8);
+    border: 1px solid black;
+    padding: 2rem;
+    width: 50%;
+    color: white;
+  }
+
+  results-pane h1{
+    font-size: 3rem;
+  }
+
+  .results-pane a{
+    display: inline-block;
+    min-width: 40%;
+    max-width: 45%;
+  }
+
+  .btn-result{
+    text-decoration: none;
+    color: white;
+    padding:10px;
+    width: 30%;
+    font-size: 2rem;
+  }
+
+  .btn-result-yes{
+    background-color: green;
+  }
+
+  .btn-result-no{
+    background-color: orangered;
+  }
