@@ -40,3 +40,8 @@ export const hideResult = () => {
   elements.resultModal.style.display = 'none';
   elements.resultBanner.textContent = '';
 };
+
+export const finishGame = (msg) => {
+  elements.gameResult.textContent = msg;
+  elements.gameResult.classList.toggle('show');
+}

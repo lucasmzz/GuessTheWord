@@ -124,3 +124,16 @@ html, body{
   .btn-result-no{
     background-color: orangered;
   }
+
+  .game-result-wrapper{
+    text-align: center;
+  }
+
+  .game-result{
+    font-size: 3rem;
+    display: none;
+  }
+
+  .show{
+    display: block;
+  }

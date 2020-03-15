@@ -88,4 +88,8 @@ export default class GuessTheWord {
         this.stopGame();
     }
 
+    processFinishRound(){
+        return `You guessed ${this.winsCount} out of ${this.roundCount} words.`;
+    }
+
 }

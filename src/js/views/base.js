@@ -10,5 +10,6 @@ export const elements = {
     resultModal: document.querySelector('.modal'),
     resultBanner: document.querySelector('.result-banner'),
     btnResultYes: document.querySelector('.btn-result-yes'),
-    btnResultNo: document.querySelector('.btn-result-no')
+    btnResultNo: document.querySelector('.btn-result-no'),
+    gameResult: document.querySelector('.game-result')
 }

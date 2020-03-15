@@ -52,7 +52,11 @@ const controlNewRound = () => {
 
 const controlFinishRound = () => {
   GuessTheWordView.hideResult();
-  controlStopGame();
+  GuessTheWordView.finishGame(game.processFinishRound());
+  game.stopGame();
+  game.resetCounters();
+  GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
+  GuessTheWordView.clearGuess();
 }
 
 elements.btnNewGame.addEventListener("click", controlNewGame);
