@@ -7,28 +7,15 @@ const game = new GuessTheWord();
 const controlNewGame = () => {
   if (!game.roundOn){
     game.startGame();
-    elements.btnNewGame.classList.toggle('btn-disable');
-    elements.btnStop.classList.toggle('btn-disable');
-    GuessTheWordView.clearGuess();
-    GuessTheWordView.renderGuess(game.guess);
-    GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
-    elements.gameResult.style.display = 'none';
-    elements.gameResult.textContent = '';
+    GuessTheWordView.prepareNewGame(game.guess, game.errorCount, game.winsCount, game.roundCount);
   }
 }
 
 const controlStopGame = () => {
-  const msg = game.processFinishRound();
-  console.log(msg);
-  GuessTheWordView.finishGame(msg);
+  GuessTheWordView.finishGame(game.processFinishRound());
   game.stopRound();  
   game.stopGame();
   game.resetCounters();
-  elements.btnNewGame.classList.toggle('btn-disable');
-  elements.btnStop.classList.toggle('btn-disable');
-  elements.gameResult.style.display = 'block';
-  GuessTheWordView.clearGuess();
-  GuessTheWordView.hideResult();
 }
 
 const controlCharInput = (char) => {
@@ -54,11 +41,7 @@ const controlNewRound = () => {
   GuessTheWordView.hideResult();
   if (!game.roundOn){
     game.startRound();
-    GuessTheWordView.clearGuess();
-    GuessTheWordView.renderGuess(game.guess);
-    GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
-    elements.gameResult.classList.toggle('show');
-    elements.gameResult.textContent = '';
+    GuessTheWordView.prepareNewRound(game.guess, game.errorCount, game.winsCount, game.roundCount);
   }
 }
 

@@ -22,6 +22,16 @@ html, body{
     background-color: beige;
   }
   
+  .hint-wrapper {
+    width: 60%;
+    font-size: 1.5rem;
+    margin: 0 auto;
+  }
+
+  .hint-wrapper ul{ 
+    list-style-type: none;
+  }
+
   .character-selector{
     width: 60%;
     margin: 0 auto;

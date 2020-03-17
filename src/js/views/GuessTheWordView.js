@@ -40,7 +40,32 @@ export const hideResult = () => {
   elements.resultModal.style.display = 'none';
 };
 
+export const prepareNewGame = (guess, errs, wins, rounds) => {
+  toggleGameResult('none','');
+  toggleControlButtons();
+  prepareNewRound(guess, errs, wins, rounds);
+};
+
+export const prepareNewRound = (guess, errs, wins, rounds) => {
+  clearGuess();
+  renderGuess(guess);
+  refreshCounter(errs, wins, rounds);
+  toggleGameResult('none','');
+};
+
 export const finishGame = (msg) => {
+  toggleGameResult('block', msg);
+  toggleControlButtons();
+  clearGuess();
+  hideResult();
+}
+
+const toggleControlButtons = () => {
+  elements.btnNewGame.classList.toggle('btn-disable');
+  elements.btnStop.classList.toggle('btn-disable');
+};
+
+const toggleGameResult = (display, msg) => {
+  elements.gameResult.style.display = display;
   elements.gameResult.textContent = msg;
-  elements.gameResult.classList.toggle('show');
 }
