@@ -15,6 +15,7 @@ export default class GuessTheWord {
         this.errorCount = 0;
         this.roundCount = 0;
         this.winsCount = 0;
+        this.roundOn = false;
         this.gameOn = false;
         this.guess = {};
         this.guessStatus = null;
@@ -25,18 +26,27 @@ export default class GuessTheWord {
     }
 
     startGame() {
-        this.gameOn = true;
-        this.errorCount = 0;
+        this.gameon = true;
+        this.resetCounters();
+        this.startRound();
+    }
+
+    startRound(){
+        this.roundOn = true;
         this.roundCount += 1;
+        this.errorCount = 0;
         this.guess = this.randomWord();
         this.guessStatus = Array(this.guess.word.length).fill('');
-        return this.gameOn;
+    }
+
+    stopRound() {
+        this.roundOn = false;
     }
 
     stopGame() {
         this.gameOn = false;
     }
-
+    
     resetCounters(){
         this.roundCount = 0;
         this.errorCount = 0;
@@ -79,13 +89,12 @@ export default class GuessTheWord {
     }
 
     processWin(){
-        this.stopGame();
+        this.stopRound();
         this.winsCount += 1;
-
     }
 
     processLoss(){
-        this.stopGame();
+        this.stopRound();
     }
 
     processFinishRound(){

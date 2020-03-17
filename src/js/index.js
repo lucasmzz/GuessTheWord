@@ -5,29 +5,34 @@ import { elements } from './views/base';
 const game = new GuessTheWord();
 
 const controlNewGame = () => {
-  if (!game.gameOn){
+  if (!game.roundOn){
     game.startGame();
     elements.btnNewGame.classList.toggle('btn-disable');
     elements.btnStop.classList.toggle('btn-disable');
     GuessTheWordView.clearGuess();
     GuessTheWordView.renderGuess(game.guess);
     GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
+    elements.gameResult.style.display = 'none';
+    elements.gameResult.textContent = '';
   }
 }
 
 const controlStopGame = () => {
-  if (game.gameOn){
-    game.stopGame();
-    game.resetCounters();
-    elements.btnNewGame.classList.toggle('btn-disable');
-    elements.btnStop.classList.toggle('btn-disable');
-    GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
-    GuessTheWordView.clearGuess();
-  }
+  const msg = game.processFinishRound();
+  console.log(msg);
+  GuessTheWordView.finishGame(msg);
+  game.stopRound();  
+  game.stopGame();
+  game.resetCounters();
+  elements.btnNewGame.classList.toggle('btn-disable');
+  elements.btnStop.classList.toggle('btn-disable');
+  elements.gameResult.style.display = 'block';
+  GuessTheWordView.clearGuess();
+  GuessTheWordView.hideResult();
 }
 
 const controlCharInput = (char) => {
-  if (game.gameOn){
+  if (game.roundOn){
     const res = game.processCharacter(char);
     if (res > 0){
       GuessTheWordView.refreshGuess(game.guessStatus);
@@ -47,26 +52,23 @@ const controlCharInput = (char) => {
 
 const controlNewRound = () => {
   GuessTheWordView.hideResult();
-  controlNewGame();
-}
-
-const controlFinishRound = () => {
-  GuessTheWordView.hideResult();
-  GuessTheWordView.finishGame(game.processFinishRound());
-  game.stopGame();
-  game.resetCounters();
-  GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
-  GuessTheWordView.clearGuess();
+  if (!game.roundOn){
+    game.startRound();
+    GuessTheWordView.clearGuess();
+    GuessTheWordView.renderGuess(game.guess);
+    GuessTheWordView.refreshCounter(game.errorCount, game.winsCount, game.roundCount);
+    elements.gameResult.classList.toggle('show');
+    elements.gameResult.textContent = '';
+  }
 }
 
 elements.btnNewGame.addEventListener("click", controlNewGame);
 elements.btnStop.addEventListener("click", controlStopGame);
 elements.btnResultYes.addEventListener('click',controlNewRound);
-elements.btnResultNo.addEventListener('click',controlFinishRound);
+elements.btnResultNo.addEventListener('click',controlStopGame);
 elements.charPanel.addEventListener("click", e => controlCharInput(e.target.textContent));
 window.addEventListener("keyup", e => {
-  if ((e.which > 65 &&  e.which == 32 && e.which == 8) || e.which < 90 ) {
+  if (e.which >= 65 && e.which <= 90) {
     controlCharInput(e.key.toUpperCase());
   }
 });
-

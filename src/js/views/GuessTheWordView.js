@@ -38,7 +38,6 @@ export const showResult = (msg) => {
 
 export const hideResult = () => {
   elements.resultModal.style.display = 'none';
-  elements.resultBanner.textContent = '';
 };
 
 export const finishGame = (msg) => {
